@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "xbox-random-teams",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
