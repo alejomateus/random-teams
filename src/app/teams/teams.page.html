@@ -14,15 +14,25 @@
   </ion-header>
 
   <ion-grid class="ion-padding ion-text-center">
+
     <ion-row class="ion-padding team ion-margin-bottom">
-      <span class="ion-padding-bottom">Equipo 1</span>
+      <ion-col size="12" class="ion-padding-bottom">
+        <span>Equipo 1 </span> &nbsp;
+        <ion-icon name="add-circle-outline" *ngIf="difference < 0"></ion-icon>
+        <ion-icon name="remove-circle-outline" *ngIf="difference > 0"></ion-icon>
+      </ion-col>
+
       <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of teamA"
         [ngClass]="!player.selected ? 'player' : 'active' ">
         <div> {{player.name}}</div>
       </ion-col>
     </ion-row>
     <ion-row class="ion-padding team">
-      <span class="ion-padding-bottom">Equipo 2</span>
+      <ion-col size="12" class="ion-padding-bottom">
+        <span>Equipo 2 </span>&nbsp;
+        <ion-icon name="add-circle-outline" *ngIf="difference > 0"></ion-icon>
+        <ion-icon name="remove-circle-outline" *ngIf="difference < 0"></ion-icon>
+      </ion-col>
       <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of teamB"
         [ngClass]="!player.selected ? 'player' : 'active' ">
         <div> {{player.name}}</div>

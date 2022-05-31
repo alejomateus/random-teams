@@ -2,10 +2,15 @@
   background-color: #000;
   color: #fff;
   span {
-    text-decoration: underline;
     width: 100%;
   }
 }
 .space {
   visibility: hidden;
+}
+[name="add-circle-outline"] {
+  color: var(--ion-color-success-shade);
+}
+[name="remove-circle-outline"] {
+  color: var(--ion-color-danger-shade);
 }

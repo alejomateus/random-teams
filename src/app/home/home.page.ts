@@ -55,23 +55,136 @@ export class HomePage implements OnInit {
       const copyPlayers = JSON.parse(JSON.stringify(players));
       while (teamA.length < playersNumber / 2) {
         const random = Math.floor(Math.random() * players.length);
-        teamA.push(players[random]);
-        players.splice(random, 1);
+        let specialCase = false;
+        console.log(random);
+        console.log(players[random]);
+        if (players[random].name === 'Jose') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Sandra'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Maicol') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Andrea'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Sandra') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Jose'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Andrea') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Maicol'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Milthon') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Camila'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Camila') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Milthon'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Angie') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Fabian'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        } else if (players[random].name === 'Fabian') {
+          const index = players.findIndex(
+            (player: Players) => player.name === 'Angie'
+          );
+          if (index >= 0) {
+            teamA.push(players[index]);
+            players.splice(index, 1);
+            if (index < random) {
+              specialCase = true;
+              teamA.push(players[random - 1]);
+              players.splice(random - 1, 1);
+            }
+          }
+        }
+        if (!specialCase) {
+          teamA.push(players[random]);
+          players.splice(random, 1);
+        }
       }
-      let diferenciaA = 0;
-      let diferenciaB = 0;
+      let differenceA = 0;
+      let differenceB = 0;
+      console.log(teamA);
+
       teamA.forEach((player: Players) => {
-        diferenciaA += player.score;
+        differenceA += player.score;
       });
       players.forEach((player: Players) => {
-        diferenciaB += player.score;
+        differenceB += player.score;
       });
-      if (Math.abs(diferenciaA - diferenciaB) <= 1) {
+      if (Math.abs(differenceA - differenceB) <= 1) {
         if (teamA && players) {
           const navigationExtras: NavigationExtras = {
             state: {
               teamA,
               teamB: players,
+              difference: differenceA - differenceB,
             },
           };
           this.router.navigate(['/teams'], navigationExtras);

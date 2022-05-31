@@ -10,16 +10,17 @@ import { Players } from '../models/players';
 export class TeamsPage implements OnInit {
   teamA: Players[] = [];
   teamB: Players[] = [];
+  difference = 0;
   constructor(private router: Router) {}
 
   ngOnInit() {
     if (this.router.getCurrentNavigation() != null) {
       if (this.router.getCurrentNavigation().extras.state) {
-        this.teamA = this.router.getCurrentNavigation().extras.state.teamA;
-        this.teamB = this.router.getCurrentNavigation().extras.state.teamB;
-        console.log(this.teamA);
-        console.log(this.teamB);
-
+        const { teamA, teamB, difference } =
+          this.router.getCurrentNavigation().extras.state;
+        this.teamA = teamA;
+        this.teamB = teamB;
+        this.difference = difference;
       } else {
         this.router.navigate(['/home']);
       }
