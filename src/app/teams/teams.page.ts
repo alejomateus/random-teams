@@ -17,6 +17,11 @@ export class TeamsPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.teamA = this.router.getCurrentNavigation().extras.state.teamA;
         this.teamB = this.router.getCurrentNavigation().extras.state.teamB;
+        console.log(this.teamA);
+        console.log(this.teamB);
+
+      } else {
+        this.router.navigate(['/home']);
       }
     }
   }

@@ -19,68 +19,69 @@ export class HomePage implements OnInit {
     { name: 'Maicol', score: 2, selected: false },
     { name: 'Jhon', score: 2.5, selected: false },
     { name: 'Alejandro', score: 3, selected: false },
-    { name: 'Sandra', score: 1, selected: false },
-    { name: 'Farid', score: 1, selected: false },
+    { name: 'Sandra', score: 0.5, selected: false },
+    { name: 'Farid', score: 0.5, selected: false },
     { name: 'Maicol(Perra)', score: 2, selected: false },
-    { name: 'Andrea', score: 1, selected: false },
-    { name: 'Camila', score: 1, selected: false },
+    { name: 'Andrea', score: 0.5, selected: false },
+    { name: 'Camila', score: 0.5, selected: false },
     { name: 'Esteban', score: 2, selected: false },
-    { name: 'Angie', score: 1, selected: false },
+    { name: 'Angie', score: 0.5, selected: false },
     { name: 'Fabian', score: 1, selected: false },
   ];
-  selectedPlayers: Players[] = [];
+  teamA: Players[] = [];
+  teamB: Players[] = [];
+  all = false;
   constructor(
     private router: Router,
     public alertController: AlertController
   ) {}
-  ngOnInit() {
+  ngOnInit(): void {
+    this.sort();
+  }
+  sort(): void {
     this.players.sort(() => Math.random() - 0.5);
   }
   selectPlayer(player: Players): void {
     player.selected = !player.selected;
   }
-  async raffle(): Promise<boolean> {
+  async raffle() {
     const players = this.players.filter((player: Players) => player.selected);
-    const response = this.algorithme1(players);
-    console.log(response);
-    if (response) {
-      const navigationExtras: NavigationExtras = {
-        state: {
-          ...response,
-        },
-      };
-      return await this.router.navigate(['/teams'], navigationExtras);
-    } else {
-      this.presentAlert();
-    }
+    this.algorithme1(players);
   }
   algorithme1(players: Players[], attemps: number = 1) {
-    if (attemps > 100) {
-      return {};
-    }
-    const playersNumber = players.length;
-    const teamA = [];
-    const copyPlayers = JSON.parse(JSON.stringify(players));
-    while (teamA.length < playersNumber / 2) {
-      const random = Math.floor(Math.random() * players.length);
-      teamA.push(players[random]);
-      players.splice(random, 1);
-    }
-    let diferenciaA = 0;
-    let diferenciaB = 0;
-    teamA.forEach((player: Players) => {
-      diferenciaA += player.score;
-    });
-    players.forEach((player: Players) => {
-      diferenciaB += player.score;
-    });
-    if (
-      copyPlayers.length === 4 &&
-      Math.abs(diferenciaA - diferenciaB) <= 1.5
-    ) {
-      return { teamA, teamB: players };
+    if (attemps <= 100) {
+      const playersNumber = players.length;
+      const teamA = [];
+      const copyPlayers = JSON.parse(JSON.stringify(players));
+      while (teamA.length < playersNumber / 2) {
+        const random = Math.floor(Math.random() * players.length);
+        teamA.push(players[random]);
+        players.splice(random, 1);
+      }
+      let diferenciaA = 0;
+      let diferenciaB = 0;
+      teamA.forEach((player: Players) => {
+        diferenciaA += player.score;
+      });
+      players.forEach((player: Players) => {
+        diferenciaB += player.score;
+      });
+      if (Math.abs(diferenciaA - diferenciaB) <= 1) {
+        if (teamA && players) {
+          const navigationExtras: NavigationExtras = {
+            state: {
+              teamA,
+              teamB: players,
+            },
+          };
+          this.router.navigate(['/teams'], navigationExtras);
+        }
+      } else {
+        attemps += 1;
+        this.algorithme1(copyPlayers, attemps);
+      }
     } else {
-      this.algorithme1(copyPlayers, attemps + 1);
+      this.presentAlert();
     }
   }
   async presentAlert(): Promise<void> {
@@ -102,5 +103,11 @@ export class HomePage implements OnInit {
       }
     });
     return selected > 3;
+  }
+  selectAll() {
+    this.players.forEach((player: Players) => {
+      player.selected = !this.all;
+    });
+    this.all = !this.all;
   }
 }

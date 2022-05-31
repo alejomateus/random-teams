@@ -2,7 +2,9 @@
   <ion-header>
     <ion-toolbar>
       <ion-title class="ion-text-center">
-        Seleccion de equipos
+        <ion-icon name="shuffle-outline" (click)="sort()"></ion-icon>
+        &nbsp; Seleccion de equipos &nbsp;
+        <ion-icon name="checkmark-done-circle-outline" (click)="selectAll()"></ion-icon>
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -11,7 +13,8 @@
     <ion-row>
       <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of players"
         (click)="selectPlayer(player)" [ngClass]="!player.selected ? 'player' : 'active' ">
-        <div> {{player.name}} - {{player.selected}}</div>
+        <div> {{player.name}} <ion-icon name="checkmark-done-circle-outline" *ngIf="player.selected"></ion-icon>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

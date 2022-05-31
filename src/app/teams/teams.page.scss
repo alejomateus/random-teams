@@ -1,4 +1,11 @@
 .team {
   background-color: #000;
   color: #fff;
+  span {
+    text-decoration: underline;
+    width: 100%;
+  }
+}
+.space {
+  visibility: hidden;
 }
