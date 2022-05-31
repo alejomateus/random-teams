@@ -1,0 +1,28 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="ion-text-center">
+        Equipos finales
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid class="ion-padding ion-text-center">
+    <ion-row class="ion-padding team ion-margin-bottom">
+      <span>Equipo 1</span>
+      <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of teamA"
+        [ngClass]="!player.selected ? 'player' : 'active' ">
+        <div> {{player.name}} - {{player.selected}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding team">
+      <span>Equipo 2</span>
+      <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of teamB"
+        [ngClass]="!player.selected ? 'player' : 'active' ">
+        <div> {{player.name}} - {{player.selected}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+n

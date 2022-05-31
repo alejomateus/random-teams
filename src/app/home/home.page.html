@@ -1,20 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content>
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title class="ion-text-center">
+        Seleccion de equipos
+      </ion-title>
     </ion-toolbar>
   </ion-header>
+  <ng-template [ngTemplateOutlet]="startGiveaway" *ngIf="verifySelectedPlayers()"></ng-template>
+  <ion-grid class="ion-padding ion-text-center">
+    <ion-row>
+      <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of players"
+        (click)="selectPlayer(player)" [ngClass]="!player.selected ? 'player' : 'active' ">
+        <div> {{player.name}} - {{player.selected}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ng-template [ngTemplateOutlet]="startGiveaway" *ngIf="verifySelectedPlayers()"></ng-template>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>
+<ng-template #startGiveaway>
+  <ion-grid class=" ion-text-center">
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="block" color="primary" (click)="raffle()">Sortear jugadores</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>
