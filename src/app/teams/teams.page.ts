@@ -13,7 +13,7 @@ export class TeamsPage implements OnInit {
   difference = 0;
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.router.getCurrentNavigation() != null) {
       if (this.router.getCurrentNavigation().extras.state) {
         const { teamA, teamB, difference } =

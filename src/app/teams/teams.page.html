@@ -1,4 +1,5 @@
-<ion-content>
+<ion-content >
+    <div class="lightining"></div>
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -13,29 +14,114 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid class="ion-padding ion-text-center">
+  <ion-grid class="ion-padding ion-text-center rain">
 
-    <ion-row class="ion-padding team ion-margin-bottom">
+    <ion-row class="ion-padding team animation-left">
       <ion-col size="12" class="ion-padding-bottom">
         <span>Equipo 1 </span> &nbsp;
-        <ion-icon name="add-circle-outline" *ngIf="difference < 0"></ion-icon>
-        <ion-icon name="remove-circle-outline" *ngIf="difference > 0"></ion-icon>
-      </ion-col>
-
-      <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of teamA"
-        [ngClass]="!player.selected ? 'player' : 'active' ">
-        <div> {{player.name}}</div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-padding team">
-      <ion-col size="12" class="ion-padding-bottom">
-        <span>Equipo 2 </span>&nbsp;
         <ion-icon name="add-circle-outline" *ngIf="difference > 0"></ion-icon>
         <ion-icon name="remove-circle-outline" *ngIf="difference < 0"></ion-icon>
       </ion-col>
-      <ion-col size="12" class="ion-padding ion-margin-bottom" *ngFor="let player of teamB"
-        [ngClass]="!player.selected ? 'player' : 'active' ">
-        <div> {{player.name}}</div>
+
+      <ion-col size="12" class="ion-margin-bottom active " *ngFor="let player of teamA"
+        >
+        <ion-row>
+          <ion-col>
+            <img [src]="player.image">
+          </ion-col>
+          <ion-col class="margin_auto">
+            <span>{{player.name}}</span>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 3.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 3 || player.score === 2.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 2">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-half-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 1.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 1">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-half-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 0.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/images/vs.png"  class="vs">
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding team  animation-right">
+      <ion-col size="12" class="ion-padding-bottom">
+        <span>Equipo 2 </span>&nbsp;
+        <ion-icon name="add-circle-outline" *ngIf="difference < 0"></ion-icon>
+        <ion-icon name="remove-circle-outline" *ngIf="difference > 0"></ion-icon>
+      </ion-col>
+      <ion-col size="12" class="ion-margin-bottom active " *ngFor="let player of teamB"
+        >
+        <ion-row>
+          <ion-col>
+            <img [src]="player.image">
+          </ion-col>
+          <ion-col class="margin_auto">
+            <span>{{player.name}}</span>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 3.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 3 || player.score === 2.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 2">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-half-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 1.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 1">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-half-sharp"></ion-icon>
+          </ion-col>
+          <ion-col class="margin_auto" *ngIf="player.score === 0.5">
+            <ion-icon name="star-sharp"></ion-icon>
+            <ion-icon name="star-sharp"></ion-icon>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>

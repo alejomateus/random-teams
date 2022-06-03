@@ -10,26 +10,109 @@ import { Players } from '../models/players';
 })
 export class HomePage implements OnInit {
   players: Players[] = [
-    { name: 'Milthon', score: 2.5, selected: false },
-    { name: 'Huesos', score: 1.5, selected: false },
-    { name: 'Daniel', score: 3.5, selected: false },
-    { name: 'Cristian', score: 3.5, selected: false },
-    { name: 'Jose', score: 2.5, selected: false },
-    { name: 'Junior', score: 2.5, selected: false },
-    { name: 'Maicol', score: 2, selected: false },
-    { name: 'Jhon', score: 2.5, selected: false },
-    { name: 'Alejandro', score: 3, selected: false },
-    { name: 'Sandra', score: 0.5, selected: false },
-    { name: 'Farid', score: 0.5, selected: false },
-    { name: 'Maicol(Perra)', score: 2, selected: false },
-    { name: 'Andrea', score: 0.5, selected: false },
-    { name: 'Camila', score: 0.5, selected: false },
-    { name: 'Esteban', score: 2, selected: false },
-    { name: 'Angie', score: 0.5, selected: false },
-    { name: 'Fabian', score: 1, selected: false },
+    {
+      name: 'Milthon',
+      score: 2.5,
+      selected: false,
+      image: 'assets/images/milthon.PNG',
+    },
+    {
+      name: 'Huesos',
+      score: 1,
+      selected: false,
+      image: 'assets/images/huesos.PNG',
+    },
+    {
+      name: 'Daniel',
+      score: 3.5,
+      selected: false,
+      image: 'assets/images/daniel.PNG',
+    },
+    {
+      name: 'Cristian',
+      score: 3.5,
+      selected: false,
+      image: 'assets/images/cristian.PNG',
+    },
+    {
+      name: 'Jose',
+      score: 2.5,
+      selected: false,
+      image: 'assets/images/jose.PNG',
+    },
+    {
+      name: 'Junior',
+      score: 2.5,
+      selected: false,
+      image: 'assets/images/junior.PNG',
+    },
+    {
+      name: 'Maicol',
+      score: 1.5,
+      selected: false,
+      image: 'assets/images/maicol.PNG',
+    },
+    {
+      name: 'Jhon',
+      score: 2.5,
+      selected: false,
+      image: 'assets/images/jhon.PNG',
+    },
+    {
+      name: 'Alejandro',
+      score: 3,
+      selected: false,
+      image: 'assets/images/alejandro.PNG',
+    },
+    {
+      name: 'Sandra',
+      score: 0.5,
+      selected: false,
+      image: 'assets/images/sandra.PNG',
+    },
+    {
+      name: 'Farid',
+      score: 0.5,
+      selected: false,
+      image: 'assets/images/farid.PNG',
+    },
+    {
+      name: 'Maicol 2',
+      score: 2,
+      selected: false,
+      image: 'assets/images/maicol 2.PNG',
+    },
+    {
+      name: 'Andrea',
+      score: 0.5,
+      selected: false,
+      image: 'assets/images/andrea.PNG',
+    },
+    {
+      name: 'Camila',
+      score: 0.5,
+      selected: false,
+      image: 'assets/images/camila.PNG',
+    },
+    {
+      name: 'Esteban',
+      score: 2,
+      selected: false,
+      image: 'assets/images/esteban.PNG',
+    },
+    {
+      name: 'Angie',
+      score: 0.5,
+      selected: false,
+      image: 'assets/images/angie.PNG',
+    },
+    {
+      name: 'Fabian',
+      score: 1,
+      selected: false,
+      image: 'assets/images/fabian.PNG',
+    },
   ];
-  teamA: Players[] = [];
-  teamB: Players[] = [];
   all = false;
   constructor(
     private router: Router,
@@ -44,145 +127,117 @@ export class HomePage implements OnInit {
   selectPlayer(player: Players): void {
     player.selected = !player.selected;
   }
-  async raffle() {
+  raffle(): void {
     const players = this.players.filter((player: Players) => player.selected);
     this.algorithme1(players);
   }
-  algorithme1(players: Players[], attemps: number = 1) {
+  algorithme1(players: Players[], attemps: number = 1): void {
     if (attemps <= 100) {
+      let data = {
+        players,
+        teamA: [],
+        specialCase: false,
+      };
       const playersNumber = players.length;
-      const teamA = [];
       const copyPlayers = JSON.parse(JSON.stringify(players));
-      while (teamA.length < playersNumber / 2) {
+      while (data.teamA.length < playersNumber / 2) {
         const random = Math.floor(Math.random() * players.length);
-        let specialCase = false;
-        console.log(random);
-        console.log(players[random]);
-        if (players[random].name === 'Jose') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Sandra'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Maicol') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Andrea'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Sandra') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Jose'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Andrea') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Maicol'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Milthon') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Camila'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Camila') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Milthon'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Angie') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Fabian'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
-          }
-        } else if (players[random].name === 'Fabian') {
-          const index = players.findIndex(
-            (player: Players) => player.name === 'Angie'
-          );
-          if (index >= 0) {
-            teamA.push(players[index]);
-            players.splice(index, 1);
-            if (index < random) {
-              specialCase = true;
-              teamA.push(players[random - 1]);
-              players.splice(random - 1, 1);
-            }
+        data.specialCase = false;
+        if (playersNumber > 6) {
+          switch (players[random].name) {
+            case 'Jose':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Sandra'
+              );
+              break;
+            case 'Sandra':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Jose'
+              );
+              break;
+            case 'Maicol':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Andrea'
+              );
+              break;
+            case 'Andrea':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Maicol'
+              );
+              break;
+            case 'Milthon':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Camila'
+              );
+              break;
+            case 'Camila':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Milthon'
+              );
+              break;
+            case 'Angie':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Fabian'
+              );
+              break;
+            case 'Fabian':
+              data = this.checkPartner(
+                data.players,
+                data.teamA,
+                random,
+                data.specialCase,
+                'Angie'
+              );
+              break;
           }
         }
-        if (!specialCase) {
-          teamA.push(players[random]);
+        if (!data.specialCase) {
+          data.teamA.push(players[random]);
           players.splice(random, 1);
         }
       }
       let differenceA = 0;
       let differenceB = 0;
-      console.log(teamA);
 
-      teamA.forEach((player: Players) => {
+      data.teamA.forEach((player: Players) => {
         differenceA += player.score;
       });
       players.forEach((player: Players) => {
         differenceB += player.score;
       });
       if (Math.abs(differenceA - differenceB) <= 1) {
-        if (teamA && players) {
+        if (data.teamA && players) {
           const navigationExtras: NavigationExtras = {
             state: {
-              teamA,
+              teamA: data.teamA,
               teamB: players,
               difference: differenceA - differenceB,
             },
@@ -197,6 +252,31 @@ export class HomePage implements OnInit {
       this.presentAlert();
     }
   }
+  checkPartner(
+    players: Players[],
+    teamA: Players[],
+    random: number,
+    specialCase: boolean,
+    partner: string
+  ) {
+    const index = players.findIndex(
+      (player: Players) => player.name === partner
+    );
+    if (index >= 0) {
+      teamA.push(players[index]);
+      players.splice(index, 1);
+      if (index < random) {
+        specialCase = true;
+        teamA.push(players[random - 1]);
+        players.splice(random - 1, 1);
+      }
+    }
+    return {
+      players,
+      teamA,
+      specialCase,
+    };
+  }
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -204,7 +284,6 @@ export class HomePage implements OnInit {
       message: 'Los equipos estan desiguales.',
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 
@@ -217,7 +296,7 @@ export class HomePage implements OnInit {
     });
     return selected > 3;
   }
-  selectAll() {
+  selectAll(): void {
     this.players.forEach((player: Players) => {
       player.selected = !this.all;
     });

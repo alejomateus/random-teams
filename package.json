@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "resources": "capacitor-resources -p android,ios",
-    "apk": "ionic capacitor run android",
+    "apk": "ionic capacitor run android --prod",
     "all": "npm run resources && npm run apk"
   },
   "private": true,
