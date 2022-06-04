@@ -1,11 +1,13 @@
 .team {
-  background-color: #000;
+  border: 1px solid #fff;
   color: #fff;
   span {
     width: 100%;
   }
 }
-
+.title {
+  padding-top: 0px;
+}
 .space {
   visibility: hidden;
 }
@@ -49,23 +51,20 @@
 }
 .vs {
   width: 80%;
-  animation-name: zoom-animation;
-  animation-duration: 1s;
+  animation: zoom-animation 2s infinite;
 }
 @keyframes zoom-animation {
   0% {
     transform: scale(0.8);
   }
+  50% {
+    transform: scale(1.1);
+  }
   100% {
-    transform: scale(1.3);
+    transform: scale(0.8);
   }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-size: cover;
-}
 .rain {
   height: 100vh;
   background-image: url("./../../assets/images/rain.png");
@@ -87,7 +86,7 @@ body {
   background-image: url("./../../assets/images/lightining.png");
   top: -100px;
   transform: rotate(180deg);
-  animation: lightining 4s linear infinite;
+  animation: lightining 1s linear infinite;
   opacity: 1;
 }
 @keyframes lightining {

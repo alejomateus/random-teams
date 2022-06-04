@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
       name: 'Huesos',
       score: 1,
       selected: false,
-      image: 'assets/images/huesos.PNG',
+      image: 'assets/images/huesos 2.PNG',
     },
     {
       name: 'Daniel',
@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
       name: 'Jose',
       score: 2.5,
       selected: false,
-      image: 'assets/images/jose.PNG',
+      image: 'assets/images/jose 2.PNG',
     },
     {
       name: 'Junior',
@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
       name: 'Jhon',
       score: 2.5,
       selected: false,
-      image: 'assets/images/jhon.PNG',
+      image: 'assets/images/jhon 2.PNG',
     },
     {
       name: 'Alejandro',
@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
       name: 'Sandra',
       score: 0.5,
       selected: false,
-      image: 'assets/images/sandra.PNG',
+      image: 'assets/images/sandra 2.PNG',
     },
     {
       name: 'Farid',

@@ -24,15 +24,24 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+body {
+  color: #fff;
+
+}
 .player {
   border: 1px solid var(--ion-color-danger-shade);
   border-radius: 5px;
   box-shadow: 0px 1px 2px 0px rgba(250, 11, 11, 0.75);
+  color: #fff;
 }
 .active {
   border: 1px solid var(--ion-color-success-shade);
   border-radius: 5px;
   box-shadow: 0px 1px 2px 0px rgb(3 183 58 / 75%);
+  color: #fff;
+}
+.text_white {
+  color: #fff;
 }
 .full_width {
   width: 100%;
@@ -43,4 +52,14 @@
 img {
   height: 50px;
   width: 50px;
+}
+ion-content{
+  color: #fff;
+  --ion-background-color:#000;
+}
+[name="star-sharp"] {
+  color: var(--ion-color-warning-tint);
+}
+[name="star-half-sharp"] {
+  color: var(--ion-color-warning-tint);
 }

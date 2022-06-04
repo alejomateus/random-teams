@@ -21,9 +21,14 @@ export class TeamsPage implements OnInit {
         this.teamA = teamA;
         this.teamB = teamB;
         this.difference = difference;
+        this.reproducir();
       } else {
         this.router.navigate(['/home']);
       }
     }
+  }
+  reproducir(): void {
+    const audio = new Audio('assets/ray.mp3');
+    audio.play();
   }
 }

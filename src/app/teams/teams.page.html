@@ -1,11 +1,10 @@
-<ion-content >
-    <div class="lightining"></div>
+<ion-content>
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
+        <ion-back-button defaultHref="/" class="text_white"></ion-back-button>
       </ion-buttons>
-      <ion-title class="ion-text-center">
+      <ion-title class="ion-text-center text_white">
         Equipos finales
       </ion-title>
       <ion-buttons slot="end" class="space">
@@ -13,18 +12,17 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-
+  <div class="lightining"></div>
   <ion-grid class="ion-padding ion-text-center rain">
 
     <ion-row class="ion-padding team animation-left">
-      <ion-col size="12" class="ion-padding-bottom">
+      <ion-col size="12" class="ion-padding-bottom title">
         <span>Equipo 1 </span> &nbsp;
         <ion-icon name="add-circle-outline" *ngIf="difference > 0"></ion-icon>
         <ion-icon name="remove-circle-outline" *ngIf="difference < 0"></ion-icon>
       </ion-col>
 
-      <ion-col size="12" class="ion-margin-bottom active " *ngFor="let player of teamA"
-        >
+      <ion-col size="12" class="ion-margin-bottom active " *ngFor="let player of teamA">
         <ion-row>
           <ion-col>
             <img [src]="player.image">
@@ -70,17 +68,16 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <img src="assets/images/vs.png"  class="vs">
+        <img src="assets/images/vs.png" class="vs">
       </ion-col>
     </ion-row>
     <ion-row class="ion-padding team  animation-right">
-      <ion-col size="12" class="ion-padding-bottom">
+      <ion-col size="12" class="ion-padding-bottom title">
         <span>Equipo 2 </span>&nbsp;
         <ion-icon name="add-circle-outline" *ngIf="difference < 0"></ion-icon>
         <ion-icon name="remove-circle-outline" *ngIf="difference > 0"></ion-icon>
       </ion-col>
-      <ion-col size="12" class="ion-margin-bottom active " *ngFor="let player of teamB"
-        >
+      <ion-col size="12" class="ion-margin-bottom active " *ngFor="let player of teamB">
         <ion-row>
           <ion-col>
             <img [src]="player.image">
