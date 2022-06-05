@@ -9,50 +9,48 @@
     </ion-toolbar>
   </ion-header>
   <ng-template [ngTemplateOutlet]="startGiveaway" *ngIf="verifySelectedPlayers()"></ng-template>
-  <ion-grid class="ion-padding ion-text-center">
+  <ion-grid class=" ion-text-center">
     <ion-row>
-      <ion-col size="12" class="ion-margin-bottom " *ngFor="let player of players" (click)="selectPlayer(player)"
-        [ngClass]="!player.selected ? 'player' : 'active' ">
+      <ion-col size="4" *ngFor="let player of players" (click)="selectPlayer(player)"
+        >
         <ion-row>
-          <ion-col>
+          <ion-col size="12" [ngClass]="!player.selected ? 'player' : 'active' ">
+            <span>{{player.name}}</span><br>
             <img [src]="player.image">
-          </ion-col>
-          <ion-col class="margin_auto">
-            <span>{{player.name}}</span>
-            <ion-icon name="checkmark-done-circle-outline" *ngIf="player.selected"></ion-icon>
-          </ion-col>
-          <ion-col class="margin_auto" *ngIf="player.score === 3.5">
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-          </ion-col>
-          <ion-col class="margin_auto" *ngIf="player.score === 3 || player.score === 2.5">
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-          </ion-col>
-          <ion-col class="margin_auto" *ngIf="player.score === 2">
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-half-sharp"></ion-icon>
-          </ion-col>
-          <ion-col class="margin_auto" *ngIf="player.score === 1.5">
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-          </ion-col>
-          <ion-col class="margin_auto" *ngIf="player.score === 1">
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-half-sharp"></ion-icon>
-          </ion-col>
-          <ion-col class="margin_auto" *ngIf="player.score === 0.5">
-            <ion-icon name="star-sharp"></ion-icon>
-            <ion-icon name="star-sharp"></ion-icon>
+            <!-- <ion-icon name="checkmark-done-circle-outline" *ngIf="player.selected"></ion-icon> -->
+            <div class="margin_auto" *ngIf="player.score === 3.5">
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+            </div>
+            <div class="margin_auto" *ngIf="player.score === 3 || player.score === 2.5">
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+            </div>
+            <div class="margin_auto" *ngIf="player.score === 2">
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-half-sharp"></ion-icon>
+            </div>
+            <div class="margin_auto" *ngIf="player.score === 1.5">
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+            </div>
+            <div class="margin_auto" *ngIf="player.score === 1">
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-half-sharp"></ion-icon>
+            </div>
+            <div class="margin_auto" *ngIf="player.score === 0.5">
+              <ion-icon name="star-sharp"></ion-icon>
+              <ion-icon name="star-sharp"></ion-icon>
+            </div>
           </ion-col>
         </ion-row>
       </ion-col>

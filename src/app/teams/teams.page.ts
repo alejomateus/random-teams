@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Players } from '../models/players';
 
@@ -7,10 +7,11 @@ import { Players } from '../models/players';
   templateUrl: './teams.page.html',
   styleUrls: ['./teams.page.scss'],
 })
-export class TeamsPage implements OnInit {
+export class TeamsPage implements OnInit, OnDestroy {
   teamA: Players[] = [];
   teamB: Players[] = [];
   difference = 0;
+  audio: HTMLAudioElement;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -30,5 +31,10 @@ export class TeamsPage implements OnInit {
   reproducir(): void {
     const audio = new Audio('assets/ray.mp3');
     audio.play();
+    this.audio = new Audio('assets/intro2.mp3');
+    this.audio.play();
+  }
+  ngOnDestroy(){
+    this.audio.pause();
   }
 }

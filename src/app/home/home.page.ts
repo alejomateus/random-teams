@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ViewDidEnter } from '@ionic/angular';
 import { Players } from '../models/players';
 
 @Component({
@@ -8,7 +8,7 @@ import { Players } from '../models/players';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, ViewDidEnter {
   players: Players[] = [
     {
       name: 'Milthon',
@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
       name: 'Jose',
       score: 2.5,
       selected: false,
-      image: 'assets/images/jose 2.PNG',
+      image: 'assets/images/jose.PNG',
     },
     {
       name: 'Junior',
@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
       name: 'Jhon',
       score: 2.5,
       selected: false,
-      image: 'assets/images/jhon 2.PNG',
+      image: 'assets/images/jhon.PNG',
     },
     {
       name: 'Alejandro',
@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
       name: 'Sandra',
       score: 0.5,
       selected: false,
-      image: 'assets/images/sandra 2.PNG',
+      image: 'assets/images/sandra.PNG',
     },
     {
       name: 'Farid',
@@ -114,12 +114,18 @@ export class HomePage implements OnInit {
     },
   ];
   all = false;
+  audio: HTMLAudioElement;
   constructor(
     private router: Router,
     public alertController: AlertController
   ) {}
   ngOnInit(): void {
     this.sort();
+  }
+  ionViewDidEnter() {
+    setTimeout(() => {
+      this.reproducir();
+    }, 100);
   }
   sort(): void {
     this.players.sort(() => Math.random() - 0.5);
@@ -242,6 +248,7 @@ export class HomePage implements OnInit {
               difference: differenceA - differenceB,
             },
           };
+          this.audio.pause();
           this.router.navigate(['/teams'], navigationExtras);
         }
       } else {
@@ -301,5 +308,9 @@ export class HomePage implements OnInit {
       player.selected = !this.all;
     });
     this.all = !this.all;
+  }
+  reproducir(): void {
+    this.audio = new Audio('assets/intro.mp3');
+    this.audio.play();
   }
 }
