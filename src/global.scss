@@ -36,10 +36,9 @@ body {
   filter: grayscale(100%);
 }
 .active {
-  border: 1px solid var(--ion-color-success-shade);
   border-radius: 5px;
-  box-shadow: 0px 1px 2px 0px rgb(3 183 58 / 75%);
   color: #fff;
+  animation: color 2s linear infinite;
 }
 .text_white {
   color: #fff;
@@ -63,4 +62,33 @@ ion-content{
 }
 [name="star-half-sharp"] {
   color: var(--ion-color-warning-tint);
+}
+@keyframes color {
+  0% {
+    border: 2px solid var(--ion-color-primary-shade);
+    box-shadow: 0px 1px 2px 0px rgb(49 113 224 / 75%);
+
+  }
+  50% {
+    border: 2px solid var(--ion-color-success-shade);
+    box-shadow: 0px 1px 2px 0px rgb(3 183 58 / 75%);
+
+  }
+  100% {
+    border: 2px solid var(--ion-color-primary-shade);
+    box-shadow: 0px 1px 2px 0px rgb(49 113 224 / 75%);
+  }
+}
+ion-alert.my-custom-class {
+  .alert-wrapper {
+    background: #e5e5e5 !important;
+    text-align: center;
+    .alert-head{
+      text-align: center;
+    }
+    .alert-message{
+      text-align: center;
+      padding-bottom: 0px;
+    }
+  }
 }

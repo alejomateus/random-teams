@@ -11,7 +11,7 @@ export class TeamsPage implements OnInit, OnDestroy {
   teamA: Players[] = [];
   teamB: Players[] = [];
   difference = 0;
-  audio: HTMLAudioElement;
+  audio: HTMLAudioElement = new Audio('assets/intro2.mp3');
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -31,10 +31,13 @@ export class TeamsPage implements OnInit, OnDestroy {
   reproducir(): void {
     const audio = new Audio('assets/ray.mp3');
     audio.play();
-    this.audio = new Audio('assets/intro2.mp3');
-    this.audio.play();
+    setTimeout(() => {
+      this.audio.play();
+    }, 1500);
   }
-  ngOnDestroy(){
-    this.audio.pause();
+  ngOnDestroy(): void {
+    if (this.audio) {
+      this.audio.pause();
+    }
   }
 }

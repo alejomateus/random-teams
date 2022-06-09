@@ -1,25 +1,23 @@
 import { Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { Component } from '@angular/core';
-// eslint-disable-next-line @typescript-eslint/naming-convention
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(
-    private platform: Platform
-  ) {
+  constructor(private platform: Platform, private router: Router) {
     this.platform.backButton.subscribeWithPriority(-1, () => {
-      // App.addListener('backButton', ({canGoBack}) => {
-      //   if(!canGoBack){
-      //     App.exitApp();
-      //   } else {
-      //     window.history.back();
-      //   }
-      // });
+      App.addListener('backButton', ({ canGoBack }) => {
+        if (router.url === '/home') {
+          App.exitApp();
+        } else {
+          window.history.back();
+        }
+      });
     });
   }
 }

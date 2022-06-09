@@ -14,9 +14,15 @@
 }
 [name="add-circle-outline"] {
   color: var(--ion-color-success-shade);
+  .icon-inner{
+    padding-top: 1px;
+  }
 }
 [name="remove-circle-outline"] {
   color: var(--ion-color-danger-shade);
+  .icon-inner{
+    padding-top: 1px;
+  }
 }
 
 .animation-left {
@@ -117,3 +123,10 @@
     opacity: 0;
   }
 }
+.new-background-color{
+  --background: transparent;
+}
+// ion-content{
+//   color: red;
+//   --ion-background-color:red;
+// }

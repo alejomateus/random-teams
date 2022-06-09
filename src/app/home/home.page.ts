@@ -20,25 +20,25 @@ export class HomePage implements OnInit, ViewDidEnter {
       name: 'Huesos',
       score: 1,
       selected: false,
-      image: 'assets/images/huesos 2.PNG',
+      image: 'assets/images/huesos.PNG',
     },
     {
       name: 'Daniel',
       score: 3.5,
       selected: false,
-      image: 'assets/images/daniel.PNG',
+      image: 'assets/images/daniel 2.PNG',
     },
     {
       name: 'Cristian',
       score: 3.5,
       selected: false,
-      image: 'assets/images/cristian.PNG',
+      image: 'assets/images/cristian 2.PNG',
     },
     {
       name: 'Jose',
       score: 2.5,
       selected: false,
-      image: 'assets/images/jose.PNG',
+      image: 'assets/images/jose 2.PNG',
     },
     {
       name: 'Junior',
@@ -56,7 +56,7 @@ export class HomePage implements OnInit, ViewDidEnter {
       name: 'Jhon',
       score: 2.5,
       selected: false,
-      image: 'assets/images/jhon.PNG',
+      image: 'assets/images/jhon 2.PNG',
     },
     {
       name: 'Alejandro',
@@ -68,7 +68,7 @@ export class HomePage implements OnInit, ViewDidEnter {
       name: 'Sandra',
       score: 0.5,
       selected: false,
-      image: 'assets/images/sandra.PNG',
+      image: 'assets/images/sandra2.PNG',
     },
     {
       name: 'Farid',
@@ -86,7 +86,7 @@ export class HomePage implements OnInit, ViewDidEnter {
       name: 'Andrea',
       score: 0.5,
       selected: false,
-      image: 'assets/images/andrea.PNG',
+      image: 'assets/images/andrea 2.PNG',
     },
     {
       name: 'Camila',
@@ -110,11 +110,11 @@ export class HomePage implements OnInit, ViewDidEnter {
       name: 'Fabian',
       score: 1,
       selected: false,
-      image: 'assets/images/fabian.PNG',
+      image: 'assets/images/fabian 2.PNG',
     },
   ];
   all = false;
-  audio: HTMLAudioElement;
+  audio: HTMLAudioElement = new Audio('assets/intro.mp3');
   constructor(
     private router: Router,
     public alertController: AlertController
@@ -123,9 +123,7 @@ export class HomePage implements OnInit, ViewDidEnter {
     this.sort();
   }
   ionViewDidEnter() {
-    setTimeout(() => {
-      this.reproducir();
-    }, 100);
+      this.playAudio();
   }
   sort(): void {
     this.players.sort(() => Math.random() - 0.5);
@@ -249,7 +247,9 @@ export class HomePage implements OnInit, ViewDidEnter {
             },
           };
           this.audio.pause();
-          this.router.navigate(['/teams'], navigationExtras);
+          setTimeout(() => {
+            this.router.navigate(['/teams'], navigationExtras);
+          }, 500);
         }
       } else {
         attemps += 1;
@@ -287,9 +287,9 @@ export class HomePage implements OnInit, ViewDidEnter {
   async presentAlert(): Promise<void> {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Seleccion de equipos',
-      message: 'Los equipos estan desiguales.',
-      buttons: ['OK'],
+      header: 'Los equipos estan desiguales.',
+      message: 'Seleccione de nuevo los jugadores',
+      buttons: ['OK']
     });
     await alert.present();
   }
@@ -309,8 +309,11 @@ export class HomePage implements OnInit, ViewDidEnter {
     });
     this.all = !this.all;
   }
-  reproducir(): void {
-    this.audio = new Audio('assets/intro.mp3');
-    this.audio.play();
+  async playAudio(): Promise<any> {
+    try {
+      if (this.audio) {
+        await this.audio.play();
+      }
+    } catch (error) {}
   }
 }
